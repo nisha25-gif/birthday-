@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 Years of Us | Happy Birthday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --accent-gold: #d4af37;
+            --accent-rose: #eecda3;
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Custom Cursor */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #fff, var(--accent-rose));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            opacity: 0;
+        }
+
+        /* Journey Timeline */
+        .journey {
+            padding: 10vw 5vw;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .journey-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20vh;
+            opacity: 0;
+        }
+
+        .journey-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .card {
+            width: 45%;
+            padding: 3rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .year-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--glass-border);
+            position: absolute;
+            top: -50px;
+            left: 20px;
+            z-index: -1;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-rose);
+        }
+
+        .image-placeholder {
+            width: 45%;
+            height: 400px;
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            border: 1px solid var(--glass-border);
+            /* To use your own images, replace background: url('your-link') */
+        }
+
+        /* Personal Note Section */
+        .personal-note {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5vw;
+        }
+
+        .note-container {
+            max-width: 800px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .highlight {
+            color: var(--accent-gold);
+        }
+
+        /* Final Wish */
+        .footer {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, transparent, #111);
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+
+        .btn:hover {
+            background: var(--accent-gold);
+            color: black;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div id="particles-js"></div>
+
+    <section class="hero">
+        <h1 id="hero-title">Happy Birthday, [Name]</h1>
+        <p id="hero-subtitle">11 Years. 4,015 Days. Infinite Memories.</p>
+    </section>
+
+    <section class="journey">
+        <div class="journey-item">
+            <div class="card">
+                <span class="year-label">2015</span>
+                <h3>The Beginning</h3>
+                <p>Eleven years ago, we were just kids who had no idea that we were starting the most important friendship of our lives. From school hallways to where we are now.</p>
+            </div>
+            <div class="image-placeholder">Memory One</div>
+        </div>
+
+        <div class="journey-item">
+            <div class="card">
+                <span class="year-label">2020</span>
+                <h3>The Anchor</h3>
+                <p>Through every high and every low, you've been the person I turn to. A friendship that became a sanctuary. You're more than a best friend; you're family.</p>
+            </div>
+            <div class="image-placeholder">Memory Two</div>
+        </div>
+
+        <div class="journey-item">
+            <div class="card">
+                <span class="year-label">2026</span>
+                <h3>The Present</h3>
+                <p>Looking at you today, I'm so proud of the woman you've become. Eleven years in, and I'm still your biggest fan. Here's to the next decade of us.</p>
+            </div>
+            <div class="image-placeholder">Memory Three</div>
+        </div>
+    </section>
+
+    <section class="personal-note">
+        <div class="note-container">
+            "Some people arrive and make such a beautiful impact on your life, you can barely remember what life was like without them. <span class="highlight">Thank you for 11 years of being my person.</span>"
+        </div>
+    </section>
+
+    <footer class="footer">
+        <h2>Happy Birthday to my Best Friend</h2>
+        <a href="#" class="btn" onclick="alert('I love you to the moon and back!')">A Final Message</a>
+    </footer>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animation
+        const tl = gsap.timeline();
+        tl.to("#hero-title", { opacity: 1, y: -20, duration: 1.5, ease: "power4.out" })
+          .to("#hero-subtitle", { opacity: 1, y: -10, duration: 1, ease: "power3.out" }, "-=0.5");
+
+        // Scroll Revelations for Journey
+        const items = document.querySelectorAll('.journey-item');
+        items.forEach((item) => {
+            gsap.to(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    end: "top 20%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: -50,
+                duration: 1.2,
+                ease: "power2.out"
+            });
+        });
+
+        // Parallax effect on year labels
+        gsap.utils.toArray(".year-label").forEach(label => {
+            gsap.to(label, {
+                scrollTrigger: {
+                    trigger: label,
+                    scrub: true
+                },
+                y: -100
+            });
+        });
+    </script>
+</body>
+</html>
